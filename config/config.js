@@ -11,7 +11,7 @@ const CONFIG = {};
 CONFIG.PORT = process.env.PORT ? process.env.PORT : 8080;
 
 // defines the database string
-CONFIG.DATABASE_STRING = 'mongodb://0.0.0.0:27017/JSON_HERO';
+CONFIG.DATABASE_STRING = '';
 
 // defines the regexp to use to validate email
 CONFIG.EMAIL_VALIDATOR_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
