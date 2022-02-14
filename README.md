@@ -78,7 +78,7 @@ As long as the session ID is valid, user will need no credentials to login with 
 
 Updates user info. Every data is validated. Server responds relevant status based on validation.
 
-#### Authenticate
+#### Delete
 
 ```http
   DELETE /user/delete
