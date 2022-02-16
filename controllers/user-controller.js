@@ -100,6 +100,9 @@ controller.authenticate = (req, res, next) => {
 }
 
 controller.guard = (req, res, next) => {
+    if(req.body.email || req.body.password){ // IF REQ body contains email or password
+        next();
+    }else{
     let token = req.cookies.session; // grabs token that came with the request
     token = encrypt(token);
     if (!token) { // if no tokens found
@@ -128,6 +131,7 @@ controller.guard = (req, res, next) => {
         }).catch(error => {
             next(error);
         })
+    }
     }
 }
 
