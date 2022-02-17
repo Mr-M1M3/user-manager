@@ -71,7 +71,7 @@ class Database {
         const MODEL = this.MODEL;
         return new Promise(async (accept, reject) => {
             try{
-                MODEL.findByIdAndDelete(id);
+                await MODEL.findByIdAndDelete(id);
                 accept('deleted');
             }catch(error){
                 reject(error);
