@@ -77,6 +77,17 @@ class Database {
                 reject(error);
             }
         })
+    };
+    deleteMany(condition){// deletes many data
+        const MODEL = this.MODEL;
+        return new Promise(async (accept, reject) => {
+            try{
+                const deleted_count = await MODEL.deleteMany(condition);
+                accept(deleted_count.deletedCount);
+            }catch(error){
+                reject(error);
+            }
+        })
     }
 };
 

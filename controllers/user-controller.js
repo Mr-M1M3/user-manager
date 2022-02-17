@@ -184,7 +184,12 @@ controller.delete = (req, res, next) => {
         if(data.length == 0){
             res.status(401).send('auth failed');
         }else{
-            database.delete({_id: data[0].id}).then(() => {
+            token_database.deleteMany({id: data[0].id}).then(del_count => { //deletes token
+                console.log(del_count);
+            }).catch(error => {
+                next(error);
+            });
+            database.delete({_id: data[0].id}).then(() => { //deletes user
                 res.send('deleted');
             }).catch(error => {
                 next(error);
