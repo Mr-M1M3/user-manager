@@ -7,8 +7,8 @@
 // modules
 const CONFIG = require('../config/config');
 const mongoose = require('mongoose');
-const USER_MODEL = require('../database/models/user-model');
-const TOKEN_MODEL = require('../database/models/token-model');
+const USER_SCHEMA = require('../database/models/user-model');
+const TOKEN_SCHEMA = require('../database/models/token-model');
 const is_valid_password = require('../validators/password-validator');
 const Database = require('../database/database');
 const encrypt = require('../utils/encrypt');
@@ -23,8 +23,8 @@ if (!CONFIG.DATABASE_STRING) {
 const controller = {};
 
 // initializing database
-const database = new Database(CONFIG.DATABASE_STRING, USER_MODEL);
-const token_database = new Database(CONFIG.DATABASE_STRING, TOKEN_MODEL);
+const database = new Database(CONFIG.DATABASE_STRING, USER_SCHEMA, 'User');
+const token_database = new Database(CONFIG.DATABASE_STRING, TOKEN_SCHEMA, 'Token');
 token_database.init();
 database.init();
 

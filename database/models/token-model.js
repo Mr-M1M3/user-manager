@@ -33,4 +33,4 @@ const TOKEN_SCHEMA = new mongoose.Schema({
 });
 
 // exports this schema 
-module.exports = mongoose.model('Token', TOKEN_SCHEMA);
+module.exports = TOKEN_SCHEMA;

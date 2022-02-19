@@ -9,19 +9,21 @@ const mongoose = require('mongoose');
 
 
 class Database {
-    constructor(DATABASE_STRING, MODEL) { // constructs properties to use them later on methods
+    constructor(DATABASE_STRING, SCHEMA, NAME) { // constructs properties to use them later on methods
         this.DATABASE_STRING = DATABASE_STRING;
-        this.MODEL = MODEL;
+        this.SCHEMA = SCHEMA;
+        this.NAME = NAME;
     };
 
     //initialize database
-    init() {
-        const DATABASE_STRING = this.DATABASE_STRING;
-        mongoose.connect(DATABASE_STRING).then(() => {
-            console.log(`Database connection established`);
-        }).catch(error => {
-            console.error(error);
-        })
+    async init() {
+        try {
+            const DATABASE_STRING = this.DATABASE_STRING;
+            const CONN = mongoose.createConnection(DATABASE_STRING);
+            this.MODEL = CONN.model(this.NAME, this.SCHEMA);
+        } catch (error) {
+            console.log(`Database connection failed`);
+        }
     }
 
     // writes record database
@@ -56,7 +58,10 @@ class Database {
         const MODEL = this.MODEL;
         return new Promise(async (accept, reject) => { //returns a promise
             try {
-                const UPDATE = await MODEL.findByIdAndUpdate(filter, data, {new: true, runValidators: true}).select({
+                const UPDATE = await MODEL.findByIdAndUpdate(filter, data, {
+                    new: true,
+                    runValidators: true
+                }).select({
                     password: 0,
                     __v: 0
                 });
@@ -67,24 +72,24 @@ class Database {
         });
     };
     // deletes data
-    delete(id){
+    delete(id) {
         const MODEL = this.MODEL;
         return new Promise(async (accept, reject) => {
-            try{
+            try {
                 await MODEL.findByIdAndDelete(id);
                 accept('deleted');
-            }catch(error){
+            } catch (error) {
                 reject(error);
             }
         })
     };
-    deleteMany(condition){// deletes many data
+    deleteMany(condition) { // deletes many data
         const MODEL = this.MODEL;
         return new Promise(async (accept, reject) => {
-            try{
+            try {
                 const deleted_count = await MODEL.deleteMany(condition);
                 accept(deleted_count.deletedCount);
-            }catch(error){
+            } catch (error) {
                 reject(error);
             }
         })
