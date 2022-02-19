@@ -7,8 +7,8 @@
 // modules
 const CONFIG = require('../config/config');
 const mongoose = require('mongoose');
-const USER_SCHEMA = require('../database/models/user-model');
-const TOKEN_SCHEMA = require('../database/models/token-model');
+const USER_SCHEMA = require('../database/schemas/user-schema');
+const TOKEN_SCHEMA = require('../database/schemas/token-schema');
 const is_valid_password = require('../validators/password-validator');
 const Database = require('../database/database');
 const encrypt = require('../utils/encrypt');
