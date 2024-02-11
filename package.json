@@ -6,7 +6,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
-    "mongoose": "^6.2.0"
+    "mongoose": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
